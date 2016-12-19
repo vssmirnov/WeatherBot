@@ -17,7 +17,7 @@ namespace WeatherBot.Core
                 using (HttpClient OWMHttpClient = new HttpClient())
                 {
 
-                    string response = await OWMHttpClient.GetStringAsync(new Uri($"http://api.openweathermap.org/data/2.5/weather?q={query}&appid={ResourcesManager.OWMAppID}&units=metric&lang={lang}"));
+                    string response = await OWMHttpClient.GetStringAsync(new Uri("http://api.openweathermap.org/data/2.5/weather?q={query}&appid={ResourcesManager.OWMAppID}&units=metric&lang={lang}"));
                     WeatherObject owmResponde = JsonConvert.DeserializeObject<WeatherObject>(response);
                     if (owmResponde != null) return owmResponde;
                     return null;
@@ -41,7 +41,7 @@ namespace WeatherBot.Core
                 using (HttpClient OWMHttpClient = new HttpClient())
                 {
 
-                    string response = await OWMHttpClient.GetStringAsync(new Uri($"http://api.openweathermap.org/data/2.5/forecast/daily?q={query}&appid={ResourcesManager.OWMAppID}&units=metric&lang=en&cnt={days}&lang={lang}"));
+                    string response = await OWMHttpClient.GetStringAsync(new Uri("http://api.openweathermap.org/data/2.5/forecast/daily?q={query}&appid={ResourcesManager.OWMAppID}&units=metric&lang=en&cnt={days}&lang={lang}"));
 
                     WeatherForecastObject owmResponde = JsonConvert.DeserializeObject<WeatherForecastObject>(response);
                     if (owmResponde != null) return owmResponde;

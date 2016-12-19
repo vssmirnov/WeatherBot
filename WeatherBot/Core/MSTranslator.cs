@@ -19,7 +19,7 @@ namespace WeatherBot.Core
                     MSTRanslatorHttpClient.DefaultRequestHeaders.Authorization =
                         new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", ResourcesManager.MSTranslatorBasicAuth);
 
-                    string uri = Uri.EscapeUriString($"https://api.datamarket.azure.com/Bing/MicrosoftTranslator/v1/Translate?Text='{query}'&To='{to}'&From='{from}'");
+                    string uri = Uri.EscapeUriString("https://api.datamarket.azure.com/Bing/MicrosoftTranslator/v1/Translate?Text='{query}'&To='{to}'&From='{from}'");
                     string js = await MSTRanslatorHttpClient.GetStringAsync(uri);
                     if (string.IsNullOrEmpty(js)) { return string.Empty; }
 

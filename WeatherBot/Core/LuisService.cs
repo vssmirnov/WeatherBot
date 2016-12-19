@@ -14,7 +14,7 @@ namespace WeatherBot.Core
             {
                 using (HttpClient LUISHttpClient = new HttpClient())
                 {
-                    string response = await LUISHttpClient.GetStringAsync(new Uri($"https://api.projectoxford.ai/luis/v1/application?id={ResourcesManager.LUISAppID}&subscription-key={ResourcesManager.LUISSubscriptionKey}&q={query}"));
+                    string response = await LUISHttpClient.GetStringAsync(new Uri("https://api.projectoxford.ai/luis/v1/application?id={ResourcesManager.LUISAppID}&subscription-key={ResourcesManager.LUISSubscriptionKey}&q={query}"));
 
                     LUISObject luisResponse = JsonConvert.DeserializeObject<LUISObject>(response);
                     if (luisResponse != null) return luisResponse;
