@@ -131,7 +131,7 @@ namespace WeatherBot
                                 if (lang == "ar")
                                     replyBase = await forecastFormat.Translate("en", "ar");
 
-                                replyBase = string.Format(replyBase, date.ToString("dddd, MMMM, yyyy", new CultureInfo($"{lang},SA")), description, cityName, lowAt, highAt);
+                                replyBase = string.Format(replyBase, date.ToString("dddd, MMMM, yyyy", new CultureInfo("/{lang/},SA")), description, cityName, lowAt, highAt);
 
                             }
                             else
