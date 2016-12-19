@@ -76,7 +76,7 @@ namespace WeatherBot
                 if (luis == null) { return message.CreateReplyMessage(BuildErrorMessage("404NOT_FOUND_LUISSERVICE")); }
                 if (luis.intents.Count() == 0) { return message.CreateReplyMessage(BuildErrorMessage("404NOT_FOUND_LUISSERVICEINTENTS")); }
 
-                switch (luis.intents[0]?.intent)
+                switch (luis.intents[0].intent)
                 {
 
                     #region Weather CASE:
@@ -84,8 +84,8 @@ namespace WeatherBot
                         {
                             if (luis.entities.Count() == 0) { return message.CreateReplyMessage(BuildErrorMessage("404NOT_FOUND_LUISSERVICEENTITIES")); }
 
-                            city = luis.entities.Where(ent => ent.type == "Location").FirstOrDefault()?.entity;
-                            time = luis.entities.Where(ent => ent.type == "builtin.datetime.date").FirstOrDefault()?.resolution.date;
+                            city = luis.entities.Where(ent => ent.type == "Location").FirstOrDefault().entity;
+                            time = luis.entities.Where(ent => ent.type == "builtin.datetime.date").FirstOrDefault().resolution.date;
 
                             //Todo: Build error messages..
                             if (city == null)
@@ -110,7 +110,7 @@ namespace WeatherBot
 
                                 List lastDayWeather = weatherForecast.list.Last();
 
-                                string description = lastDayWeather.weather.FirstOrDefault()?.description;
+                                string description = lastDayWeather.weather.FirstOrDefault().description;
                                 DateTime date = lastDayWeather.dt.ConvertToDateTime();
                                 string lowAt = Math.Round(lastDayWeather.temp.min) + "°";
                                 string highAt = Math.Round(lastDayWeather.temp.max) + "°";
@@ -138,7 +138,7 @@ namespace WeatherBot
                             {
                                 var weather = await weatherService.GetWeatherData(city, lang);
 
-                                string description = weather.weather.FirstOrDefault()?.description;
+                                string description = weather.weather.FirstOrDefault().description;
                                 string lowAt = weather.main.temp_min + "";
                                 string highAt = weather.main.temp_min + "";
                                 string cityName = "";
@@ -170,8 +170,8 @@ namespace WeatherBot
                     #region Condition CASE:
                     case "Condition":
                         {
-                            city = luis.entities.Where(ent => ent.type == "Location").FirstOrDefault()?.entity;
-                            condition = luis.entities.Where(ent => ent.type == "Condition").FirstOrDefault()?.entity;
+                            city = luis.entities.Where(ent => ent.type == "Location").FirstOrDefault().entity;
+                            condition = luis.entities.Where(ent => ent.type == "Condition").FirstOrDefault().entity;
 
                             if (city == null)
                             {
@@ -182,8 +182,8 @@ namespace WeatherBot
                             }
 
                             var weatherForecast = await weatherService.GetWeatherData(city, lang);
-                            string description = weatherForecast.weather.FirstOrDefault()?.description;
-                            string status = weatherForecast.weather.FirstOrDefault()?.main;
+                            string description = weatherForecast.weather.FirstOrDefault().description;
+                            string status = weatherForecast.weather.FirstOrDefault().main;
 
                             string cityName;
                             if (lang == "ar")
