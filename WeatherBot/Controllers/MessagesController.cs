@@ -233,15 +233,13 @@ namespace WeatherBot
                 }
 
     */
-                return message.CreateReplyMessage(BuildErrorMessage("400BAD_REQUEST"));
+                return message.CreateReplyMessage(helloFormat);
 
             }
             else
             {
                 return HandleSystemMessage(message);
-            }
-
-
+            }            
         }
 
         private Message HandleSystemMessage(Message message)
