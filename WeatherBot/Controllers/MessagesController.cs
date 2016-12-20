@@ -233,8 +233,9 @@ namespace WeatherBot
                 }
 
     */
-                return message.CreateReplyMessage(helloFormat);
-
+                Message reply = message.CreateReplyMessage("Hi");
+                reply.Type = "Message";
+                return reply;
             }
             else
             {
