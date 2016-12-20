@@ -5,7 +5,6 @@ using System.Web.Http;
 using Microsoft.Bot.Connector;
 using Microsoft.Bot.Connector.Utilities;
 using WeatherBot.Core.Models;
-using Microsoft.Bot.Builder.Luis;
 using WeatherBot.Core;
 using System.Globalization;
 
@@ -40,7 +39,7 @@ namespace WeatherBot
 
                 string ErrorState = "200OK";
 
-                if (message.Text == "/arabic")
+                /*if (message.Text == "/arabic")
                 {
 
                     lang = "ar";
@@ -233,7 +232,7 @@ namespace WeatherBot
                         #endregion
                 }
 
-
+    */
                 return message.CreateReplyMessage(BuildErrorMessage("400BAD_REQUEST"));
 
             }
